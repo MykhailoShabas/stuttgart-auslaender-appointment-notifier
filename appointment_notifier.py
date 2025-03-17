@@ -115,7 +115,7 @@ def appointments_available():
 
 def main():
     print("💻 Executing script...")
-    if not appointments_available():
+    if appointments_available():
         # Send notification to your phone using ntfy app
         topic = "servicepoint_stuttgart_immigration_office"
         title = "Servicepoint - Stuttgart Immigration Office"
