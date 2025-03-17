@@ -8,7 +8,7 @@
 #
 # Author: Shabas
 # Changelog:
-#     Version: 1.0
+#     Version: 1.1
 #        Changed by:
 #        Date: 17.03.2025
 # ---------------------------------------------------------------------------------------------
@@ -25,7 +25,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 # Defaults
-SLEEPING_TIME = 55 # 55 seconds
 DEBUG = False
 WEBSITE_URL = "https://stuttgart.konsentas.de/form/7/?signup_new=1"
 
@@ -115,20 +114,14 @@ def appointments_available():
         driver.quit()
 
 def main():
-    while True:
-        print("💻 Executing script...")
-
-        if appointments_available():
-            # Send notification to your phone using ntfy app
-            topic = "servicepoint_stuttgart_immigration_office"
-            title = "Servicepoint - Stuttgart Immigration Office"
-            message = "\n✅✅✅ Appointments available ✅✅✅\n\nBook your appointment now!"
-            requests.post(f"https://ntfy.sh/{topic}", data=message.encode("utf-8"), headers={"Title": title, "Priority": "high"})
-            print("✅ Notification was sent")
-            break  # Exit the loop
-
-        print(f"💤 Sleeping for {SLEEPING_TIME} seconds\n")
-        time.sleep(SLEEPING_TIME)
+    print("💻 Executing script...")
+    if appointments_available():
+        # Send notification to your phone using ntfy app
+        topic = "servicepoint_stuttgart_immigration_office"
+        title = "Servicepoint - Stuttgart Immigration Office"
+        message = "\n✅✅✅ Appointments available ✅✅✅\n\nBook your appointment now!"
+        requests.post(f"https://ntfy.sh/{topic}", data=message.encode("utf-8"), headers={"Title": title, "Priority": "high"})
+        print("✅ Notification was sent")
 
 if __name__ == "__main__":
     main()
