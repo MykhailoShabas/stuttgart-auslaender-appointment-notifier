@@ -3,6 +3,7 @@ name: Run Python Script Every Minute
 on:
   schedule:
     - cron: "* * * * *"  # Runs every minute
+  workflow_dispatch:  # Allows manual execution
 
 jobs:
   run-script:
