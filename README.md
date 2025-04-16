@@ -20,8 +20,10 @@ To execute the script, simply run `python appointment_notifier.py` command or us
 ## <a name="about"/> About
 
 This repository contains several Python scripts with functionality for checking available appointments on the Stuttgart's Immigration Office website.
-The **ntfy** app is used to send notifications to your phone when an appointment is available. Please note that **ntfy** app installation is required.
-See more [ntfy.sh | Send push notifications to your phone via PUT/POST](https://ntfy.sh/#free-software)
+
+The **ntfy** app is used to send a push notifications to your phone when an appointment is available. The user needs to subscribe to the public topic `servicepoint_stuttgart_immigration_office`.
+
+Please note! **ntfy** app installation is required. See more at [ntfy.sh | Send push notifications to your phone via PUT/POST](https://ntfy.sh/#free-software)
 
 ### <a name="released-features"/> Released Features
 
