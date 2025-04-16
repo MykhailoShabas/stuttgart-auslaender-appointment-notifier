@@ -15,9 +15,12 @@ Python script to check available appointments on the Stuttgart Immigration Offic
 
 ## <a name="getting-started"/> Getting Started
 
+To execute the script, simply run `python appointment_notifier.py` command or use the *RUN.bat* file.
+
 ## <a name="about"/> About
 
-This repository provides a few Python script with the functionality to check for available appointments on the website of Stuttgart Immigration Office. The **ntfy** app is used to send notifications to your phone when an appointment is available. Please note that **ntfy** app installation is required.
+This repository contains several Python scripts with functionality for checking available appointments on the Stuttgart's Immigration Office website.
+The **ntfy** app is used to send notifications to your phone when an appointment is available. Please note that **ntfy** app installation is required.
 
 ### <a name="released-features"/> Released Features
 
