@@ -25,7 +25,8 @@ The **ntfy** app is used to send notifications to your phone when an appointment
 ### <a name="released-features"/> Released Features
 
 Version: 1.0.0 - Release Date: 01.04.2025 - contains the following features:
-- checking notifying about the available appointments for the `Übertragung bestehender Aufenthaltstitel auf neuen Nationalpass (sog. Übertrag)` service:
+- checking and notifying about the available appointments for the `Übertragung bestehender Aufenthaltstitel auf neuen Nationalpass (sog. Übertrag)` service:
+
 ![Notifier](docs/ab_servicepoint.png)
 
 ### <a name="3rd-party-licenses"/> 3rd Party Licenses
