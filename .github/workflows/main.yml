@@ -1,0 +1,22 @@
+name: Run Python Script Every 10 Minutes
+
+on:
+  workflow_dispatch:  # Allows manual execution
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+      
+      - name: Install dependencies (optional)
+        run: pip install -r requirements.txt || echo "No dependencies"
+
+      - name: Run Python script
+        run: python aufenthaltstitel_abholen_notifier.py
