@@ -2,15 +2,17 @@
 # Name: script to check available appointments on the Stuttgart Immigration Office website.
 #
 # Description: This script provides functionality to check for available appointments
-#              on the website of Stuttgart Immigration Office. The 'ntfy' app is used to send
-#              notifications to your phone when an appointment is available
-#              ('ntfy' app installation is required).
+#              on the website of Stuttgart Immigration Office. It looks for service point
+#              "Ausländerbehörde - Servicepoint" and the option "Übertragung bestehender
+#              Aufenthaltstitel auf neuen Nationalpass (sog. Übertrag) (1 Person)".
+#              The 'ntfy' app is used to send notifications to your phone when an appointment
+#              is available ('ntfy' app installation is required).
 #
-# Author: Shabas
+# Author: Mykhailo Shabas
 # Changelog:
-#     Version: 1.1
-#        Changed by:
-#        Date: 17.03.2025
+#     Version: 1.3
+#        Changed by: Mykhailo Shabas
+#        Date: 16.04.2025
 # ---------------------------------------------------------------------------------------------
 
 import time
@@ -65,7 +67,7 @@ def appointments_available():
         if DEBUG: print("✅ Selected '1 Person' with '30 Minuten'")
 
         # Step 4: Click "Weiter" button
-        weiter_button = wait.until(EC.presence_of_element_located((By.XPATH, "//a[contains(@class, 'btn_formcontroll_next')]")))
+        weiter_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[contains(@class, 'btn_formcontroll_next')]")))
         driver.execute_script("arguments[0].click();", weiter_button)
         if DEBUG: print("✅ Clicked 'Weiter' button")
 
@@ -74,8 +76,8 @@ def appointments_available():
         if DEBUG: print("✅ Page loaded: 'Ihre gewählte Leistung' found")
 
         if DEBUG:
-            driver.save_screenshot("debug1.png")
-            print("📸 Screenshot saved: debug1.png")
+            driver.save_screenshot("docs\debug-servicepoint-1.png")
+            print("📸 Screenshot saved: debug-servicepoint-1.png")
 
         # Step 6: Click the second "Weiter" button
         weiter_buttons = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "btn_formcontroll_next")))
@@ -87,8 +89,8 @@ def appointments_available():
         EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Bitte wählen Sie ein Datum')]"))))
 
         if DEBUG:
-            driver.save_screenshot("debug2.png")
-            print("📸 Screenshot saved: debug2.png")
+            driver.save_screenshot("docs\debug-servicepoint-2.png")
+            print("📸 Screenshot saved: debug-servicepoint-2.png")
 
         # Try to find text "Keine verfügbaren Termine" or "Bitte wählen Sie ein Datum"
         no_appointments = driver.find_elements(By.XPATH, "//*[contains(text(), 'Keine verfügbaren Termine!')]")
@@ -119,7 +121,7 @@ def main():
         # Send notification to your phone using ntfy app
         topic = "servicepoint_stuttgart_immigration_office"
         title = "Servicepoint - Stuttgart Immigration Office"
-        message = "\n✅✅✅ Appointments available ✅✅✅\n\nBook your appointment now!"
+        message = "\n✅ Appointments available \n✅ Übertragung bestehender Aufenthaltstitel auf neuen Nationalpass (sog. Übertrag) (1 Person) \n✅ Book your appointment now!"
         requests.post(f"https://ntfy.sh/{topic}", data=message.encode("utf-8"), headers={"Title": title, "Priority": "high"})
         print("✅ Notification was sent")
 
